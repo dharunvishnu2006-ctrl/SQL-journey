@@ -21,18 +21,3 @@ CREATE TABLE events (
     FOREIGN KEY (actor_id) REFERENCES threat_actors(id),
     FOREIGN KEY (source_ip) REFERENCES ip_addresses(id)
 );
-
-INSERT INTO ip_addresses (id, ip_value, actor_id) VALUES
-(1, '103.21.45.10', 1),
-(2, '45.9.12.200', 3),
-(3, '198.51.100.7', 2);
-
-INSERT INTO events (id, event_type, actor_id, source_ip) VALUES
-(1, 'Ransomware', 1, 1),
-(2, 'Phishing', 3, 2),
-(3, 'DDoS', 2, 3);
-
-SELECT e.event_type, a.actor_name, a.country, ip.ip_value
-FROM events e
-JOIN threat_actors a ON e.actor_id = a.id
-JOIN ip_addresses ip ON e.source_ip = ip.id;
