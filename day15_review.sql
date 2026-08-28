@@ -1,0 +1,10 @@
+CREATE TABLE ml_experiments (
+  id SERIAL,
+  created_at TIMESTAMP
+) PARTITION BY RANGE (created_at);
+
+CREATE TABLE dec_2025 PARTITION OF ml_experiments
+FOR VALUES FROM ('2025-12-01') TO ('2026-01-01');
+
+CREATE TABLE jan_2026 PARTITION OF ml_experiments
+FOR VALUES FROM ('2026-01-01') TO ('2026-02-01');
